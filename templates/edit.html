@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body %}
+{% set fname = 'img/' + post.img_file %}
+        <header class="masthead" style="background-image: url('{{ url_for('static', filename=fname) }}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>{{post.title}}</h1>
+                            <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">Start Bootstrap</a>
+                                on August 24, 2023
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+<h1 class="text-center">Edit the post</h1>
+<div class="container">
+<form action="/edit/{{post.sno}}" method="POST" class="w-1/2">
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Blog Title</label>
+      <input type="text" class="form-control my-2" name="title" id="exampleFormControlInput1" value="{{post.title}}">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Content</label>
+      <textarea class="form-control my-2" name="content" id="exampleFormControlTextarea1" rows="3" value="">
+        {{post.content}}
+      </textarea>
+    </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Slug</label>
+        <input type="text" class="form-control my-2" name="slug" id="exampleFormControlInput1" value="{{post.slug}}">
+      </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Image url</label>
+        <input type="text" class="form-control my-2" name="img_file" id="exampleFormControlInput1" value="{{post.img_file}}">
+      </div>
+      <button type="submit" class="btn btn-primary my-3">Update Blog</button>
+  </form>
+</div>
+{% endblock %}
